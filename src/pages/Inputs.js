@@ -1,5 +1,5 @@
-import React, { useSyncExternalStore } from "react";
-import { AddShoppingCart } from '@mui/icons-material';
+import React from "react";
+import { Phone, Lock } from '@mui/icons-material';
 import MenuBars from "../components/MenuBars";
 import { useRef, useState } from "react";
 
@@ -12,13 +12,12 @@ function Inputs() {
             inputElement1.current.focus();
         } else if (index === 2) {
             inputElement2.current.focus();
-
         }
 
     };
 
     return (
-        <div className="flex flex-1 justify-center ">
+        <div className="flex flex-1 justify-center h-full">
             <MenuBars index={5}></MenuBars>
             <div className="flex flex-col justify-center w-[80%] mb-20 mt-16 ml-20 ">
                 <div className="pb-16">
@@ -94,12 +93,17 @@ function Inputs() {
                         </div>
                     </div>
 
+
+                </div>
+                <div className="flex flex-col space-y-10 w-[70%] font-[600] pb-10">
+
+                    {/*  */}
                     <div className="flex space-x-10">
                         <div className="flex flex-col space-y-3  ">
                             <text className="font-light text-[12px] ">{"<Input helperText=”Some interesting text” />"}</text>
                             <div tabIndex={-1} className=" flex flex-col text-[#333333] space-y-1 ">
-                                <label onClick={() => focusInput(1)} className="font-light text-[12px] ">Label</label>
-                                <input ref={inputElement1} placeholder="Placeholder" className="px-3 font-medium text-[14px] appearance-none focus:outline-none border border-1 border-[#828282] 
+                                <label className="font-light text-[12px] ">Label</label>
+                                <input placeholder="Placeholder" className="px-3 font-medium text-[14px] appearance-none focus:outline-none border border-1 border-[#828282] 
                                 w-[200px] h-[56px] rounded-[8px]" ></input>
                                 <span className="text-[#828282] text-[10px] font-thin">Some interesting text</span>
                             </div>
@@ -117,10 +121,97 @@ function Inputs() {
                             </div>
                         </div>
                     </div>
+                    {/*  */}
+                    <div className="flex space-x-[75px]">
+                        <div className="flex flex-col space-y-3  ">
+                            <text className="font-light text-[12px] ">{"<Input startIcon />"}</text>
+                            <div tabIndex={-1} className=" flex flex-col text-[#333333] ">
+                                <label className="font-light text-[12px] ">Label
+                                    <label className="flex items-center mt-1 px-3 font-medium text-[14px]  border border-1 border-[#828282] 
+                                    focus:outline-none w-[200px] h-[56px] rounded-[8px]">
+                                        <div className="text-[#828282]">
+                                            <Phone />
+                                        </div>
+                                        <input className="pl-3 w-[90%] focus:outline-none" placeholder="Placeholder" ></input>
+
+                                    </label>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div className="flex flex-col space-y-3 ">
+                            <text className="font-light text-[12px] text-[#333333]">{"<Input endIcon />"}</text>
+                            <div className=" flex flex-col text-[#333333] space-y-1">
+                                <label className="font-light text-[12px] ">Label
+                                    <label className="flex items-center mt-1 px-3 font-medium text-[14px]  border border-1 border-[#828282] 
+                                    focus:outline-none w-[200px] h-[56px] rounded-[8px]">
+
+                                        <input className="pr-2 w-[90%] focus:outline-none" placeholder="Placeholder" ></input>
+                                        <div className="text-[#828282]">
+                                            <Lock />
+                                        </div>
+                                    </label>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    {/*  */}
+                    <div className="flex flex-col space-y-3 ">
+                        <text className="font-light text-[12px] text-[#333333]">{"<Input value=”text” />"}</text>
+                        <div className=" flex flex-col text-[#333333] space-y-1">
+                            <label className="font-light text-[12px] ">Label
+                                <input className="flex items-center mt-1 px-3 font-medium text-[14px]  border border-1 border-[#828282] 
+                                    focus:outline-none w-[200px] h-[56px] rounded-[8px] focus:outline-none" value={"Text"} ></input>
+                            </label>
+                        </div>
+                    </div>
+                    {/*  */}
+                    <div className="flex space-x-[75px]">
+                        <div className="flex flex-col space-y-3  ">
+                            <text className="font-light text-[12px] ">{"<Input size=”sm” />"}</text>
+                            <div tabIndex={-1} className=" flex flex-col text-[#333333] ">
+                                <label className="font-light text-[12px] ">Label
+                                    <input className="flex items-center mt-1 px-3 font-medium text-[14px]  border border-1 border-[#828282] 
+                                    focus:outline-none w-[200px] h-[40px] rounded-[8px] focus:outline-none" placeholder="Placeholder" ></input>
+                                </label>
+                            </div>
+                        </div>
+                        <div className="flex flex-col space-y-3 ">
+                            <text className="font-light text-[12px] text-[#333333]">{"<Input size=”md” />"}</text>
+                            <div className=" flex flex-col text-[#333333] space-y-1">
+                                <label className="font-light text-[12px] ">Label
+                                    <input className="flex items-center mt-1 px-3 font-medium text-[14px]  border border-1 border-[#828282] 
+                                    focus:outline-none w-[200px] h-[56px] rounded-[8px] focus:outline-none" placeholder="Placeholder" ></input>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    {/*  */}
+                    <div className="flex flex-col space-y-3 ">
+                        <text className="font-light text-[12px] text-[#333333]">{"<Input fullWidth />"}</text>
+                        <div className=" flex flex-col text-[#333333] space-y-1">
+                            <label className="font-light text-[12px] ">Label
+                                <input className="flex items-center mt-1 px-3 font-medium text-[14px]  border border-1 border-[#828282] 
+                                    focus:outline-none w-full h-[56px] rounded-[8px] focus:outline-none" placeholder="Placeholder" ></input>
+                            </label>
+                        </div>
+                    </div>
+                    {/*  */}
+                    <div className="flex flex-col space-y-3 ">
+                        <text className="font-light text-[12px] text-[#333333]">{"<Input multiline row=”4” />"}</text>
+                        <div className=" flex flex-col text-[#333333] space-y-1">
+                            <label className="font-light text-[12px] ">Label
+                                <textarea class="flex items-center mt-1 px-3 font-medium text-[14px]  border border-1 border-[#828282] 
+                                    focus:outline-none w-[200px] min-h-[150px] rounded-[8px] p-3
+                                    focus:outline-none"  placeholder="Placeholder" ></textarea>
+                            </label>
+                        </div>
+                    </div>
+                    {/*  */}
 
                 </div>
-
             </div>
+
         </div>
     );
 }
