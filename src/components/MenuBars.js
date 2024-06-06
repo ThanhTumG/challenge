@@ -10,6 +10,10 @@ const MenuBars = (props) => {
             navigate("/")
         } else if (title === "inputs") {
             navigate("/inputs")
+        } else if (title === "todo") {
+            navigate("/todo")
+        } else if (title === "quote") {
+            navigate("/quote")
         }
     }
     return (
@@ -21,12 +25,11 @@ const MenuBars = (props) => {
             </div>
 
             <ul className="flex flex-col space-y-6 font-medium text-[14px] text-[#9E9E9E]">
-                <li><a >Colors</a> </li>
-                <li><a >Types</a></li>
-                <li><a >Spaces</a></li>
-                <li className={props.index === 4 ? "hover:cursor-pointer font-bold text-[#3F3F3F]" : "hover:cursor-pointer"}><text onClick={() => handleMenu("buttons")}>Buttons</text></li>
-                <li className={props.index === 5 ? "hover:cursor-pointer font-bold text-[#3F3F3F]" : "hover:cursor-pointer"}><text onClick={() => handleMenu("inputs")}>Inputs</text></li>
-                <li><a >Grid</a></li>
+                <li className={props.index === 1 ? "hover:cursor-pointer font-bold text-[#3F3F3F]" : "hover:cursor-pointer"}><text onClick={() => handleMenu("buttons")}>Buttons</text></li>
+                <li className={props.index === 2 ? "hover:cursor-pointer font-bold text-[#3F3F3F]" : "hover:cursor-pointer"}><text onClick={() => handleMenu("inputs")}>Inputs</text></li>
+                <li className={props.index === 3 ? "hover:cursor-pointer font-bold text-[#3F3F3F]" : "hover:cursor-pointer"}><text onClick={() => handleMenu("todo")}>ToDoList</text></li>
+                <li className={props.index === 4 ? "hover:cursor-pointer font-bold text-[#3F3F3F]" : "hover:cursor-pointer"}><text onClick={() => handleMenu("quote")}>QuoteGenerator</text></li>
+
             </ul>
 
         </div>

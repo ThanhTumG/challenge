@@ -9,6 +9,7 @@ function Inputs() {
     const inputElement2 = useRef();
     const focusInput = (index) => {
         if (index === 1) {
+            console.log(inputElement1)
             inputElement1.current.focus();
         } else if (index === 2) {
             inputElement2.current.focus();
@@ -18,7 +19,7 @@ function Inputs() {
 
     return (
         <div className="flex flex-1 justify-center h-full">
-            <MenuBars index={5}></MenuBars>
+            <MenuBars index={2}></MenuBars>
             <div className="flex flex-col justify-center w-[80%] mb-20 mt-16 ml-20 ">
                 <div className="pb-16">
                     <h1 className="text-[#4F4F4F] text-[36px] font-medium">
@@ -201,7 +202,7 @@ function Inputs() {
                         <text className="font-light text-[12px] text-[#333333]">{"<Input multiline row=”4” />"}</text>
                         <div className=" flex flex-col text-[#333333] space-y-1">
                             <label className="font-light text-[12px] ">Label
-                                <textarea class="flex items-center mt-1 px-3 font-medium text-[14px]  border border-1 border-[#828282] 
+                                <textarea className="flex items-center mt-1 px-3 font-medium text-[14px]  border border-1 border-[#828282] 
                                     focus:outline-none w-[200px] min-h-[150px] rounded-[8px] p-3
                                     focus:outline-none"  placeholder="Placeholder" ></textarea>
                             </label>

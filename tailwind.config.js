@@ -5,8 +5,17 @@ module.exports = withMT({
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'montserrat': ['Montserrat'],
+        'lato': ['Lato'],
+        'garamond': ['Garamond']
+      }
+    }
   },
-  plugins: [],
+  variants: {},
+  plugins: [
+
+  ]
 });
 

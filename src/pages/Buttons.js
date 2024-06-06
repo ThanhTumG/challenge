@@ -4,7 +4,7 @@ import MenuBars from "../components/MenuBars";
 function Buttons() {
     return (
         <div className="flex flex-1 justify-center ">
-            <MenuBars index={4}></MenuBars>
+            <MenuBars index={1}></MenuBars>
             <div className="flex flex-col justify-center w-[80%] mb-20 mt-16 ml-20 ">
                 <div className="pb-16">
                     <h1 className="text-[#4F4F4F] text-[36px] font-medium">

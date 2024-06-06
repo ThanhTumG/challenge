@@ -4,7 +4,9 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Buttons from './pages/Buttons';
 import Inputs from './pages/Inputs';
+import ToDoList from './pages/ToDoList';
 import HomePage from './pages/HomePage';
+import QuoteGenerator from './pages/QuoteGenerator';
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -24,6 +26,12 @@ const router = createBrowserRouter(
         </Route>
         <Route path="/inputs" >
           <Route index={true} element={<Inputs />} />
+        </Route>
+        <Route path="/todo" >
+          <Route index={true} element={<ToDoList />} />
+        </Route>
+        <Route path="/quote" >
+          <Route index={true} element={<QuoteGenerator />} />
         </Route>
       </Route>
     </>,
