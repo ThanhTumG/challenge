@@ -1,5 +1,4 @@
 import React from "react";
-import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
@@ -17,11 +16,9 @@ const ToDoList = () => {
     })
     const [listTask, setListTask] = useState(() => {
         const localStorageTask = JSON.parse(localStorage.getItem('tasks'))
-        // console.log(localStorageTask)
         if (!localStorageTask) return []
         return localStorageTask
     })
-    const [listBox, setListBox] = useState([])
     const handleSubmit = () => {
         if (task === "") return
         setListTask(prev => {
@@ -80,8 +77,6 @@ const ToDoList = () => {
             <button className="fixed space-x-[0.75px] top-6 left-4 flex items-center text-[#333333] h-6" onClick={() => navigate(-1)}>
                 <ArrowBack sx={{ fontSize: 20 }} />
                 <text className="text-center">go back</text>
-
-
             </button>
 
             <h1 className="text-[36px] text-[#333333] font-bold">#todo</h1>
@@ -123,7 +118,7 @@ const ToDoList = () => {
                                 className="flex justify-center space-x-2 items-center bg-[#2F80ED] w-[109px] h-[56px] rounded-[12px]
                         drop-shadow-[0px_2px_6px_rgba(127,177,243,0.4)] hover:bg-[#0039CB] focus:bg-[#0039CB] 
                         hover:drop-shadow-[0px_2px_6px_rgba(41,98,255,0.2)] text-white focus:drop-shadow-[0px_2px_6px_rgba(41,98,255,0.2)]">
-                                Primary
+                                Add
                             </button>
                         </div>
                         <ul className="flex flex-col space-y-4">
@@ -146,7 +141,7 @@ const ToDoList = () => {
                                 className="flex justify-center space-x-2 items-center bg-[#2F80ED] w-[109px] h-[56px] rounded-[12px]
                         drop-shadow-[0px_2px_6px_rgba(127,177,243,0.4)] hover:bg-[#0039CB] focus:bg-[#0039CB] 
                         hover:drop-shadow-[0px_2px_6px_rgba(41,98,255,0.2)] text-white focus:drop-shadow-[0px_2px_6px_rgba(41,98,255,0.2)]">
-                                Primary
+                                Add
                             </button>
                         </div>
                         <ul className="flex flex-col space-y-4">

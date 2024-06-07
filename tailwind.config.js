@@ -8,6 +8,7 @@ module.exports = withMT({
     extend: {
       fontFamily: {
         'montserrat': ['Montserrat'],
+        'raleway': ['Raleway'],
         'lato': ['Lato'],
         'garamond': ['Garamond']
       }
