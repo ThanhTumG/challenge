@@ -61,7 +61,7 @@ export const SearchBar = ({ setDataList, setLocationName }) => {
         <div className="flex flex-1 h-[100%]  absolute pt-16 z-40 bg-[#1E213A] items-center justify-start space-y-10  flex-col w-full">
             <div className="flex items-center  justify-between w-[85%]">
                 <label className="text-[#E7E7EB] bg-transparent px-3 focus:outline-none flex items-center w-[70%] h-[48px] border-2 border-[#E7E7EB] ">
-                    <div className="text-[#616475">
+                    <div className="text-[#616475]">
                         <Search />
                     </div>
                     <input value={inputText}

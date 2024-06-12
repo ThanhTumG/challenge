@@ -6,7 +6,12 @@ import WeatherIcon from "../components/WeatherIcon";
 import WeatherWidget from "../components/WeatherWidget";
 import { SearchBar } from "../components/SearchBar";
 import moment from 'moment';
+
+// require('dotenv').config();
+const apiKey = process.env.REACT_APP_API_WEATHER;
 export default function WeatherApp() {
+
+    console.log(apiKey)
     const today = new Date()
     const navigate = useNavigate();
     const [dataList, setDataList] = useState(null)
@@ -25,7 +30,7 @@ export default function WeatherApp() {
         try {
             const response = await fetch(
 
-                `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=d4dcfaad24318b7f56342f7ba3750cb7&units=metric`
+                `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`
             );
             const json = await response.json();
             setLocationName(json.city.name)
