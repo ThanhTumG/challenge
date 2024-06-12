@@ -7,6 +7,8 @@ import Inputs from './pages/Inputs';
 import ToDoList from './pages/ToDoList';
 import HomePage from './pages/HomePage';
 import QuoteGenerator from './pages/QuoteGenerator';
+import WeatherApp from './pages/WeatherApp';
+import JobSearch from './pages/JobSearch';
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -32,6 +34,12 @@ const router = createBrowserRouter(
         </Route>
         <Route path="/quote" >
           <Route index={true} element={<QuoteGenerator />} />
+        </Route>
+        <Route path="/weather" >
+          <Route index={true} element={<WeatherApp />} />
+        </Route>
+        <Route path="/job" >
+          <Route index={true} element={<JobSearch />} />
         </Route>
       </Route>
     </>,
