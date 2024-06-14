@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
 import { DeleteOutline, ArrowBack } from "@mui/icons-material";
 const ToDoList = () => {
-
     const navigate = useNavigate();
     const [activeTabIndex, setActiveTabIndex] = useState(0);
     const [tabUnderlineLeft, setTabUnderlineLeft] = useState(0);
@@ -167,7 +166,6 @@ const ToDoList = () => {
                                     <DeleteOutline onClick={() => handleDelete(task.key)} className=" w-[14px] h-[18px] text-[#BDBDBD]" />
                                 </li>
                             ))}
-
                         </ul>
                         <button onClick={() => handleDelete("all")} className="self-end flex justify-center items-center mt-6 space-x-2  bg-[#EB5757] w-[124px] h-[40px] rounded-[4px]
                         ">

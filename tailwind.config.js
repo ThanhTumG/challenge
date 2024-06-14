@@ -10,7 +10,9 @@ module.exports = withMT({
         'montserrat': ['Montserrat'],
         'raleway': ['Raleway'],
         'lato': ['Lato'],
-        'garamond': ['Garamond']
+        'garamond': ['Garamond'],
+        'poppins': ['Poppins'],
+        'roboto': ['Roboto']
       }
     },
     screens: {

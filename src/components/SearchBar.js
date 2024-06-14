@@ -52,9 +52,7 @@ export const SearchBar = ({ setDataList, setLocationName }) => {
             const newResult = country.filter((country) => country.includes(value.toLowerCase()))
             setResults(newResult)
         }
-
         setInputText(value)
-
     }
 
     return (
@@ -66,7 +64,6 @@ export const SearchBar = ({ setDataList, setLocationName }) => {
                     </div>
                     <input value={inputText}
                         onChange={e => handleChange(e.target.value)} className="pl-3 w-[90%] bg-transparent focus:outline-none" placeholder="search location" ></input>
-
                 </label>
 
                 <button onClick={(e) => { getWeatherFromCity(inputText); e.target.blur(); }}

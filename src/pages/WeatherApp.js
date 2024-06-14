@@ -7,11 +7,10 @@ import WeatherWidget from "../components/WeatherWidget";
 import { SearchBar } from "../components/SearchBar";
 import moment from 'moment';
 
-// require('dotenv').config();
 const apiKey = process.env.REACT_APP_API_WEATHER;
 export default function WeatherApp() {
 
-    console.log(apiKey)
+
     const today = new Date()
     const navigate = useNavigate();
     const [dataList, setDataList] = useState(null)
@@ -77,7 +76,7 @@ export default function WeatherApp() {
                 ...prev,
                 weather: weather.weather[0].description,
                 temp: Math.floor(weather.main.temp),
-                windSpeed: Math.floor(weather.wind.speed * 2.23693629),
+                windSpeed: Math.ceil(weather.wind.speed * 2.23693629),
                 windDeg: weather.wind.deg,
                 humidity: weather.main.humidity,
                 visibility: (weather.visibility * 0.000621371192).toFixed(1),
@@ -156,10 +155,10 @@ export default function WeatherApp() {
     return (
         <div className="flex flex-1 md:flex-row flex-col font-raleway min-h-screen">
             <div className="flex items-center justify-start relative pb-6 flex-col md:w-[30%] w-full bg-[#1E213A]">
-                <div className="flex w-full justify-between py-6 px-4">
-                    <button className=" space-x-[0.75px] z-50 flex items-center text-[#E7E7EB] h-6" onClick={() => navigate(-1)}>
+                <div className="flex w-full justify-between pt-4 pb-2 px-4">
+                    <button className=" space-x-[0.75px] z-50 flex items-center text-[#E7E7EB]/[.5] hover:text-[#E7E7EB] h-6" onClick={() => navigate(-1)}>
                         <ArrowBack sx={{ fontSize: 20 }} />
-                        <text className="text-center">go back</text>
+                        {/* <text className="text-center">go back</text> */}
                     </button>
                     {modal ? <Close onClick={() => setModal(false)} className="z-50  flex items-center text-[#E7E7EB] " /> : <></>}
                 </div>
