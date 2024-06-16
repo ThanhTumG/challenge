@@ -1,10 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Search, ChevronRight } from "@mui/icons-material";
-// import { useNavigate } from 'react-router-dom';
-// import WeatherIcon from "../components/WeatherIcon";
-// import WeatherWidget from "../components/WeatherWidget";
-
 
 export const SearchBar = ({ setDataList, setLocationName }) => {
     const [country, setCountry] = useState([]);
