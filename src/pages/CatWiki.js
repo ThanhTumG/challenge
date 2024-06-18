@@ -168,8 +168,13 @@ export default function CatWiki() {
                                         onChange={e => handleChange(e.target.value)}
                                         className="md:pl-3 pl-1 w-[90%] bg-transparent focus:outline-none text-[#291507] font-montserrat font-[500] tex-[12px] md:text-[18px]"
                                         placeholder={placeholder} ></input>
-                                    <div className="text-[#291507]">
-                                        <Search sx={{ fontSize: 14 }} />
+                                    <div className="flex text-[#291507]/[.76]">
+                                        <div className="md:hidden">
+                                            <Search sx={{ fontSize: 14 }} />
+                                        </div>
+                                        <div className="md:block hidden">
+                                            <Search sx={{ fontSize: 24 }} />
+                                        </div>
                                     </div>
                                 </label>
                                 <div className="absolute rounded-[14px] md:rounded-[24px] max-h-[220px] top-[80px] bg-white z-50 flex items-center flex-col overflow-y-auto  justify-start w-[100%]">
