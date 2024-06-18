@@ -12,7 +12,9 @@ module.exports = withMT({
         'lato': ['Lato'],
         'garamond': ['Garamond'],
         'poppins': ['Poppins'],
-        'roboto': ['Roboto']
+        'roboto': ['Roboto'],
+        'mysteryquest': ['Mystery Quest'],
+        'montserrat': ['Montserrat']
       }
     },
     screens: {

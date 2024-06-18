@@ -18,6 +18,8 @@ const MenuBars = (props) => {
             navigate("/weather")
         } else if (title === "job") {
             navigate("/job")
+        } else if (title === "cat") {
+            navigate("/cat")
         }
     }
     return (
@@ -35,6 +37,7 @@ const MenuBars = (props) => {
                 <li className={props.index === 4 ? "hover:cursor-pointer font-bold text-[#3F3F3F]" : "hover:cursor-pointer"}><text onClick={() => handleMenu("quote")}>QuoteGenerator</text></li>
                 <li className={props.index === 4 ? "hover:cursor-pointer font-bold text-[#3F3F3F]" : "hover:cursor-pointer"}><text onClick={() => handleMenu("weather")}>WeatherApp</text></li>
                 <li className={props.index === 5 ? "hover:cursor-pointer font-bold text-[#3F3F3F]" : "hover:cursor-pointer"}><text onClick={() => handleMenu("job")}>JobResearch</text></li>
+                <li className={props.index === 6 ? "hover:cursor-pointer font-bold text-[#3F3F3F]" : "hover:cursor-pointer"}><text onClick={() => handleMenu("cat")}>CatWiki</text></li>
 
             </ul>
 
