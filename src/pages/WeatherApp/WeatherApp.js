@@ -1,46 +1,46 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { MyLocation, ArrowBack, LocationOn, NavigationRounded, Close } from "@mui/icons-material";
-import { useNavigate } from 'react-router-dom';
-import WeatherIcon from "../components/WeatherIcon";
-import WeatherWidget from "../components/WeatherWidget";
-import { SearchBar } from "../components/SearchBar";
+import { MyLocation, LocationOn, NavigationRounded, Close, Search, ChevronRight } from "@mui/icons-material";
+import WeatherIcon from "../../components/WeatherCom/WeatherIcon";
+import WeatherWidget from "../../components/WeatherCom/WeatherWidget";
+import { getWeatherByLocation, getWeatherByCity, getCity } from "../../api/WeatherAPI";
+import { SearchBar } from "../../components/Search/SearchBar";
 import moment from 'moment';
 
-const apiKey = process.env.REACT_APP_API_WEATHER;
 export default function WeatherApp() {
-
-
+    const [country, setCountry] = useState([]);
     const today = new Date()
-    const navigate = useNavigate();
     const [dataList, setDataList] = useState(null)
     const [isFahrenheit, setIsFahrenheit] = useState(false)
     const [locationName, setLocationName] = useState('Unknown')
     const [weatherList, setWeatherList] = useState([])
     const [weatherToday, setWeatherToday] = useState({})
     const [modal, setModal] = useState(false)
-    const [country, setCountry] = useState([]);
+    const [result, setResult] = useState([])
     const [inputText, setInputText] = useState("");
-    const [results, setResults] = useState([])
 
     let currentDate = moment().format('ddd, DD MMM');
-
-    const getWeatherFromLocation = async (lat, lon) => {
+    const handleGetWeatherByCity = async (city) => {
         try {
-            const response = await fetch(
-
-                `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`
-            );
-            const json = await response.json();
-            setLocationName(json.city.name)
-            return json.list
+            const weather = await getWeatherByCity(city)
+            setLocationName(weather.city.name)
+            setDataList(weather.list)
         } catch (error) {
-            console.error(error);
+            alert(`${city} is either not valid or the data has not been updated yet.`)
         }
-    };
+    }
+    useEffect(() => {
+        const fetchCountries = async () => {
+            const result = await getCity();
+            const returnData = result.reduce((prev, curr) => {
+                return prev.concat(curr.cities.map((city) => city.toLowerCase()))
+            }, [])
+            setCountry(returnData)
+        };
+        fetchCountries();
+    }, []);
     const getData = () => {
         const weatherNext4Day = dataList.filter((value, index) => { if (index % 8 === 0 && index !== 0) return true; return false })
-        console.log(weatherNext4Day)
         let tempRange4Day = {}
         dataList.forEach(ele => {
             if (tempRange4Day[ele.dt_txt.slice(0, 11)]) {
@@ -49,7 +49,6 @@ export default function WeatherApp() {
                 tempRange4Day[ele.dt_txt.slice(0, 11)] = 1;
             }
         });
-
         let index = 0
         for (let i in tempRange4Day) {
             if (index === 0) {
@@ -63,13 +62,9 @@ export default function WeatherApp() {
             }
         }
         tempRange4Day = Object.values(tempRange4Day)
-        // console.log(tempRange4Day)
         setWeatherList(() => {
-
             return weatherNext4Day.map((weather, index) => { return { ...weather, tempRange: tempRange4Day[index] } })
         })
-
-
         const weather = dataList[0]
         setWeatherToday(prev => {
             return {
@@ -84,18 +79,12 @@ export default function WeatherApp() {
             }
         })
     }
-
-
     const getCurrentWeather = () => {
-
         if ("geolocation" in navigator) {
             navigator.geolocation.getCurrentPosition(async function (position) {
-
-
-                const newWeatherList = await getWeatherFromLocation(position.coords.latitude, position.coords.longitude)
-                setDataList(newWeatherList)
-                // getData()
-
+                const newWeather = await getWeatherByLocation(position.coords.latitude, position.coords.longitude)
+                setLocationName(newWeather.city.name)
+                setDataList(newWeather.list)
             });
         } else {
             console.log("Geolocation is not available in your browser.");
@@ -103,9 +92,7 @@ export default function WeatherApp() {
     }
     const windDirection = (deg) => {
         let direction = ""
-        // let rotate = `rotate-[${deg}deg]`
         let rotate = ""
-
         if ((deg > 348.75 && deg <= 360) || (deg >= 0 && deg <= 11.25)) direction = "N"
         else if (deg > 11.25 && deg <= 33.75) { direction = "NNE"; rotate = "rotate-[22.5deg]" }
         else if (deg > 33.75 && deg <= 56.25) { direction = "NE"; rotate = "rotate-45" }
@@ -132,16 +119,6 @@ export default function WeatherApp() {
             </div>
         )
     }
-    const handleChange = (value) => {
-        if (value === '') setResults([])
-        else {
-            const newResult = country.filter((country) => country.includes(value))
-            setResults(newResult)
-        }
-
-        setInputText(value)
-
-    }
     useEffect(() => {
         if (dataList)
             getData()
@@ -149,24 +126,45 @@ export default function WeatherApp() {
 
     useEffect(() => {
         getCurrentWeather()
-
-
     }, []);
     return (
         <div className="flex flex-1 md:flex-row flex-col font-raleway min-h-screen">
             <div className="flex items-center justify-start relative pb-6 flex-col md:w-[30%] w-full bg-[#1E213A]">
                 <div className="flex w-full justify-between pt-4 pb-2 px-4">
-                    <button className=" space-x-[0.75px] z-50 flex items-center text-[#E7E7EB]/[.5] hover:text-[#E7E7EB] h-6" onClick={() => navigate(-1)}>
-                        <ArrowBack sx={{ fontSize: 20 }} />
-                        {/* <text className="text-center">go back</text> */}
-                    </button>
                     {modal ? <Close onClick={() => setModal(false)} className="z-50  flex items-center text-[#E7E7EB] " /> : <></>}
                 </div>
 
                 {modal ?
-                    <SearchBar setDataList={setDataList} setLocationName={setLocationName} />
+                    <div className="flex flex-1 h-[100%]  absolute pt-16 z-40 bg-[#1E213A] items-center justify-start space-y-10  flex-col w-full">
+                        <div className="flex items-center  justify-between w-[85%]">
+                            <label className="text-[#E7E7EB] bg-transparent px-3 focus:outline-none flex items-center w-[70%] h-[48px] border-2 border-[#E7E7EB] ">
+                                <div className="text-[#616475]">
+                                    <Search />
+                                </div>
+                                <SearchBar placeholder="search location" inputText={inputText} setInputText={setInputText} listdata={country} setResults={setResult} >
+                                </SearchBar>
+                            </label>
+
+                            <button onClick={(e) => { handleGetWeatherByCity(inputText); e.target.blur(); }}
+                                className="flex justify-center space-x-2 items-center bg-[#3C47E9] w-[86px] h-[48px] 
+                                hover:bg-[#0039CB] focus:bg-[#0039CB] 
+                                 text-[#E7E7EB] ">
+                                Search
+                            </button>
+                        </div>
+                        <div className="flex items-center flex-col space-y-2 overflow-y-auto  justify-start w-[85%]">
+                            {result.slice(0, 10).map((result, index) => (
+                                <button key={index} onClick={() => { handleGetWeatherByCity(result); setInputText(result) }} className="flex justify-between items-center px-4 w-full h-[64px] text-[#E7E7EB] 
+                            font-[500] text-[16px] hover:border-2 hover:border-[#616475]">
+                                    <text className="capitalize">{result}</text>
+                                    <ChevronRight />
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+
                     : <></>}
-                <div className="flex flex-1 items-center justify-between  flex-col w-full">
+                <div className="flex flex-1 items-center justify-between pt-6  flex-col w-full">
                     <div className="flex items-center  justify-between w-[85%]">
                         <button onClick={() => setModal(true)} className="flex justify-center space-x-2 items-center bg-[#6E707A] w-[161px] h-[40px]
                         drop-shadow-[0px_4px_4px_rgba(0,0,0,0.45)] hover:bg-[#AEAEAE] focus:bg-[#AEAEAE]
@@ -185,7 +183,7 @@ export default function WeatherApp() {
 
                     </div>
                     <div className="flex flex-col items-center justify-center space-y-10 ">
-                        <div className="flex justify-center items-center my-[-20px]">
+                        <div className="flex justify-center items-center my-[-5px]">
                             <text className="text-[#E7E7EB] text-[110px]">{isFahrenheit ? Math.floor(weatherToday.temp * (9 / 5) + 32) : weatherToday.temp}</text>
                             <text className="text-[#A09FB1] text-[48px]">º{isFahrenheit ? 'F' : 'C'}</text>
                         </div>
@@ -204,7 +202,7 @@ export default function WeatherApp() {
 
 
             </div>
-            <div className="flex items-center  flex-col md:w-[70%] w-full bg-[#100E1D] py-6 px-[15%] space-y-10">
+            <div className="flex items-center  flex-col md:w-[70%] w-full bg-[#100E1D] pt-6 pb-10 px-[15%] space-y-10">
                 <div className="flex place-self-end space-x-2   ">
                     <button onClick={() => setIsFahrenheit(false)} className={`w-[40px] h-[40px] rounded-full text-[18px] font-[700] text-center ${isFahrenheit ? "bg-[#585676] text-[#E7E7EB]" : "bg-[#E7E7EB] text-[#110E3C]"}`}>&deg;C</button>
                     <button onClick={() => setIsFahrenheit(true)} className={`w-[40px] h-[40px] rounded-full text-[18px] font-[700] text-center ${!isFahrenheit ? "bg-[#585676] text-[#E7E7EB]" : "bg-[#E7E7EB] text-[#110E3C]"}`}>&deg;F</button>

@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 export default function WeatherIcon(props) {
     // const [icon, setIcon] = useState(<></>)
     switch (props.name) {

@@ -2,58 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import Buttons from './pages/Buttons';
-import Inputs from './pages/Inputs';
-import ToDoList from './pages/ToDoList';
-import HomePage from './pages/HomePage';
 import QuoteGenerator from './pages/QuoteGenerator';
-import WeatherApp from './pages/WeatherApp';
-import JobSearch from './pages/JobSearch';
-import CatWiki from './pages/CatWiki';
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  Route,
-  RouterProvider,
-} from "react-router-dom";
+import WeatherApp from './pages/WeatherApp/WeatherApp';
+import CatWikiApp from './pages/CatWiki/CatWikiApp';
+import JobSearchApp from './pages/JobSearch/JobSearchApp';
+
 // @material-tailwind/react
 import { ThemeProvider } from "@material-tailwind/react";
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <>
 
-      <Route path="/" >
-        <Route index={true} element={<HomePage />} />
-        <Route path="/buttons" >
-          <Route index={true} element={<Buttons />} />
-        </Route>
-        <Route path="/inputs" >
-          <Route index={true} element={<Inputs />} />
-        </Route>
-        <Route path="/todo" >
-          <Route index={true} element={<ToDoList />} />
-        </Route>
-        <Route path="/quote" >
-          <Route index={true} element={<QuoteGenerator />} />
-        </Route>
-        <Route path="/weather" >
-          <Route index={true} element={<WeatherApp />} />
-        </Route>
-        <Route path="/job" >
-          <Route index={true} element={<JobSearch />} />
-        </Route>
-        <Route path="/cat" >
-          <Route index={true} element={<CatWiki />} />
-        </Route>
-      </Route>
-    </>,
-  ),
-);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <ThemeProvider>
-      <RouterProvider router={router} />
+      {/* <QuoteGenerator /> */}
+      {/* <WeatherApp /> */}
+      {/* <JobSearchApp /> */}
+      <CatWikiApp />
     </ThemeProvider>
   </React.StrictMode>
 );
