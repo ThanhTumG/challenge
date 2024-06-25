@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Search, ChevronRight } from "@mui/icons-material";
+const apikey = process.env.REACT_APP_API_WEATHER_CITY;
 
 export const SearchBar = ({ setDataList, setLocationName }) => {
     const [country, setCountry] = useState([]);
@@ -20,10 +21,9 @@ export const SearchBar = ({ setDataList, setLocationName }) => {
         try {
             const response = await fetch(
 
-                `https://api.openweathermap.org/data/2.5/forecast?appid=5caf59265a678ca70e57d4763ad8ddcc&q=${city.replace(' ', '%20')}&units=metric`
+                `https://api.openweathermap.org/data/2.5/forecast?appid=${apikey}=${city.replace(' ', '%20')}&units=metric`
             );
             const json = await response.json();
-            // return json.list
             setLocationName(json.city.name)
             setDataList(json.list)
         } catch (error) {
