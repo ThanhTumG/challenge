@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useState, useEffect } from "react";
 import { MyLocation, LocationOn, NavigationRounded, Close, Search, ChevronRight } from "@mui/icons-material";
 import WeatherIcon from "../../components/WeatherCom/WeatherIcon";
@@ -39,7 +39,7 @@ export default function WeatherApp() {
         };
         fetchCountries();
     }, []);
-    const getData = () => {
+    const getData = useCallback(() => {
         const weatherNext4Day = dataList.filter((value, index) => { if (index % 8 === 0 && index !== 0) return true; return false })
         let tempRange4Day = {}
         dataList.forEach(ele => {
@@ -78,7 +78,7 @@ export default function WeatherApp() {
                 airPressure: weather.main.pressure
             }
         })
-    }
+    }, [dataList])
     const getCurrentWeather = () => {
         if ("geolocation" in navigator) {
             navigator.geolocation.getCurrentPosition(async function (position) {
@@ -122,7 +122,7 @@ export default function WeatherApp() {
     useEffect(() => {
         if (dataList)
             getData()
-    }, [dataList])
+    }, [dataList, getData])
 
     useEffect(() => {
         getCurrentWeather()

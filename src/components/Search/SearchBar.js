@@ -1,7 +1,6 @@
 import React from "react";
 
 export const SearchBar = React.memo(({ defaultValue = '', placeholder = '', inputText = '', setInputText = null, listdata = [], setResults = null, setSelect = null }) => {
-    console.log(1)
     const handleChange = (value) => {
         if (value === '') {
             if (setSelect)

@@ -8,7 +8,7 @@ export default function Quote(content) {
     const [tabHeight, setTabHeight] = useState(0)
     useEffect(() => {
         setTabHeight(quoteRef.current.offsetHeight)
-    })
+    }, [])
     return (
         <p ref={quoteRef} className="relative w-[614px] text-[36px] text-black font-[500]">{`"${content.content}"`}
             <span

@@ -9,11 +9,16 @@ const QuoteGenerator = () => {
     const [author, setAuthor] = useState("")
     const [tag, setTag] = useState("")
     async function getQuote() {
-        const randomQuote = await getRandomQuote()
-        setIsMode2(false)
-        setQuote([randomQuote.content])
-        setAuthor(randomQuote.author)
-        setTag(randomQuote.tags.join(', '))
+        try {
+            const randomQuote = await getRandomQuote()
+            setIsMode2(false)
+            setQuote([randomQuote.content])
+            setAuthor(randomQuote.author)
+            setTag(randomQuote.tags.join(', '))
+        } catch (error) {
+            console.log(error)
+        }
+
     }
     useEffect(() => {
         getQuote()
