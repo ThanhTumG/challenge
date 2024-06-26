@@ -39,7 +39,7 @@ export default function SearchLocationBar() {
                     <Public />
                 </div>
                 <div className="w-[90%]" onFocus={() => setFocus(true)} ref={inputRef} >
-                    <SearchBar setSelect={setSelectedLocation} className="truncate pl-3   focus:outline-none text-[#333333]" placeholder="City, state, zip code or country"
+                    <SearchBar className="truncate pl-3   focus:outline-none text-[#333333]" placeholder="City, state, zip code or country"
                         inputText={inputText} setInputText={setInputText} listdata={listLocation.map((loc) => loc.name)} setResults={setResult} />
                 </div>
             </label>

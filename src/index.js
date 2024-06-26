@@ -15,8 +15,8 @@ root.render(
   <React.StrictMode>
     <ThemeProvider>
       {/* <QuoteGenerator /> */}
-      <WeatherApp />
-      {/* <JobSearchApp /> */}
+      {/* <WeatherApp /> */}
+      <JobSearchApp />
       {/* <CatWikiApp /> */}
     </ThemeProvider>
   </React.StrictMode>

@@ -16,10 +16,10 @@ export const getJob = async (level, company, location) => {
             console.error(error);
         }
     }
-    for (let i = 1; i < 4; i++) {
+    for (let i = 1; i < 10; i++) {
         const [pg_count, pg_result] = await fetchJob(i)
         newListJob[i - 1] = { key: i, value: pg_result }
-        if (pg_count === i + 1 || i === 3) {
+        if (pg_count === i + 1 || i === 9) {
             const data = newListJob.reduce((acc, curr) => acc.concat(curr.value), [])
             return data
         }

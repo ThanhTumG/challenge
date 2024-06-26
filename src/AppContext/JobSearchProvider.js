@@ -9,14 +9,17 @@ export const AppProvider = ({ children }) => {
     const [listJob, setListJob] = useState([])
     const [selectedJob, setSelectedJob] = useState({})
     const [isDetail, setIsDetail] = useState(false)
+    const [loading, setLoading] = useState(false);
 
     const getListJob = async () => {
+        setLoading(true)
         try {
             const newlistJob = await getJob(selectedLevel, selectedCompany, selectedLocation.value, selectedJob, setSelectedJob)
             setListJob(newlistJob)
         } catch (error) {
             console.log(error)
         }
+        setLoading(false)
     }
 
     useEffect(() => {
@@ -28,7 +31,7 @@ export const AppProvider = ({ children }) => {
             value={{
                 selectedLocation, setSelectedLocation, selectedCompany,
                 setSelectedCompany, listJob, setSelectedLevel, selectedLevel,
-                isDetail, setIsDetail, selectedJob, setSelectedJob
+                isDetail, setIsDetail, selectedJob, setSelectedJob, loading
             }}
         >
             {children}
